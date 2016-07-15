@@ -36,7 +36,7 @@ testApp.service('TestService', function($http, $filter,localStorageService, $tim
     }
     this.fetchSuggestions = function(name){
         debugger
-        return $http.get('http://localhost:3000/api/suggestion/'+name)
+        return $http.get('http://52.76.74.231:3000/api/suggestion/'+name)
     }
     this.locationDetails = function(name){
         return $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+name+'&key=AIzaSyAtEVuuYnBHGbcZcRVH-gf78foURLpq7jc')
@@ -48,12 +48,12 @@ testApp.service('TestService', function($http, $filter,localStorageService, $tim
     }
     this.getLocality2 = function(lat,lng,rd){
         var rd= rd*1000
-        url = 'http://localhost:3000/api/local/'+lat+'/'+lng+'/'+rd
+        url = 'http://52.76.74.231:3000/api/local/'+lat+'/'+lng+'/'+rd
         return $http.get(url)
 
     }
     this.placeByPlaceId = function(id){
-        url = 'http://localhost:3000/api/place/'+id
+        url = 'http://52.76.74.231:3000/api/place/'+id
         return $http.get(url)
     }
 
