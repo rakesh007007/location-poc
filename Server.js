@@ -8,6 +8,8 @@ var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 function REST(){
     var self = this;
+    //self.connectMysql();
+    self.configureExpress();
 };
 passport.use(new Strategy({
     clientID: 232554233795408,
@@ -32,7 +34,7 @@ passport.deserializeUser(function(obj, cb) {
 app.use(passport.initialize());
 app.use(passport.session());
 
-REST.prototype.configureExpress = function(connection) {
+REST.prototype.configureExpress = function() {
       var self = this;
       app.use(bodyParser.urlencoded({ extended: true }));
       app.use(bodyParser.json());
@@ -43,14 +45,6 @@ REST.prototype.configureExpress = function(connection) {
   passport.authenticate('facebook'));
 var finsert =function(user){
   var query = "insert into user(username,pwd) values("+user.id+","+user.id+")";
-  connection.query(query,function(err,rows){
-            if(err) {
-              console.log(err)
-            } else {
-              console.log(rows)
-
-            }
-        })
 }
 var flogin = function(user){
   console.log('flogin')
@@ -80,12 +74,12 @@ app.get('/login/facebook/return',
     flogin(req.user)
     res.redirect('/frontend/#/login?userid='+req.user.id);
   });
-      var rest_router = new rest(router,connection,md5);
+      var rest_router = new rest(router,{},md5);
       self.startServer();
 }
 
 REST.prototype.startServer = function() {
-      app.listen(3000,'0.0.0.0',function(){
+      app.listen(3000,function(){
           console.log("All right ! I am alive at Port 3000.");
       });
 }
