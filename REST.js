@@ -16,7 +16,7 @@ var getDetailsUsingPlaceIds = function(data){
 REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     var self = this;
     router.get("/suggestion/:name",function(req,res){
-        var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+req.params.name+'&key=AIzaSyAtEVuuYnBHGbcZcRVH-gf78foURLpq7jc&callback=JSON_CALLBACK'
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+req.params.name+'&key=AIzaSyALDUZEwvk_dTywAtFh__rOAoCuWCj2AGo&callback=JSON_CALLBACK'
         
         request(url, function (error, response, body) {
   if (!error && response.statusCode == 200) {
@@ -26,7 +26,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
 })
     });
     router.get("/local/:lat/:lng/:rd",function(req,res){
-        var url = 'https://maps.googleapis.com/maps/api/place/radarsearch/json?location='+req.params.lat+','+req.params.lng+'&radius='+req.params.rd+'&rankby=distance&type=sublocality_level_2&key=AIzaSyAtEVuuYnBHGbcZcRVH-gf78foURLpq7jc'
+        var url = 'https://maps.googleapis.com/maps/api/place/radarsearch/json?location='+req.params.lat+','+req.params.lng+'&radius='+req.params.rd+'&rankby=distance&type=sublocality_level_2&key=AIzaSyALDUZEwvk_dTywAtFh__rOAoCuWCj2AGo'
         
         request(url, function (error, response, body) {
   if (!error && response.statusCode == 200) {
@@ -36,7 +36,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
 })
     });
     router.get("/place/:id",function(req,res){
-        var url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='+req.params.id+'&key=AIzaSyAtEVuuYnBHGbcZcRVH-gf78foURLpq7jc'
+        var url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='+req.params.id+'&key=AIzaSyALDUZEwvk_dTywAtFh__rOAoCuWCj2AGo'
         
         request(url, function (error, response, body) {
   if (!error && response.statusCode == 200) {
