@@ -8,7 +8,6 @@ var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 function REST(){
     var self = this;
-    self.connectMysql();
 };
 passport.use(new Strategy({
     clientID: 232554233795408,
@@ -32,24 +31,6 @@ passport.deserializeUser(function(obj, cb) {
 });
 app.use(passport.initialize());
 app.use(passport.session());
-REST.prototype.connectMysql = function() {
-    var self = this;
-    var pool      =    mysql.createPool({
-        connectionLimit : 100,
-        host     : 'localhost',
-        user     : 'root',
-        password : '1234',
-        database : 'limetray_assignment',
-        debug    :  false
-    });
-    pool.getConnection(function(err,connection){
-        if(err) {
-          self.stop(err);
-        } else {
-          self.configureExpress(connection);
-        }
-    });
-}
 
 REST.prototype.configureExpress = function(connection) {
       var self = this;
@@ -104,7 +85,7 @@ app.get('/login/facebook/return',
 }
 
 REST.prototype.startServer = function() {
-      app.listen(3000,function(){
+      app.listen(3000,'0.0.0.0',function(){
           console.log("All right ! I am alive at Port 3000.");
       });
 }
